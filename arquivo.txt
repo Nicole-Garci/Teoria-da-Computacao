@@ -1,0 +1,15 @@
+ADD $s0 $zero $t0
+SUB $t1 $t2 $t3
+ADDI $s1 $s1 5
+MULT $s0 $t0 $t2
+DIV $s1 $t1 $t2
+AND $a0 $a1 $a2
+OR $v0 $v1 $t0
+SLT $t0 $t1 $t2
+SLL $t0 $t0 1
+SRL $t1 $t1 1
+LW $s0 0
+BEQ $t0 $t1
+BNE $t2 $t3
+J 100
+JR $ra

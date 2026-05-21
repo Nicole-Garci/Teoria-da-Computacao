@@ -1,5 +1,3 @@
-# Banco de registradores MIPS.
-
 class Registers:
 
     def __init__(self):
@@ -21,20 +19,26 @@ class Registers:
             "$a2": 15,
 
             "$v0": 0,
-            "$v1": 0,
-
-            "$ra": 999
+            "$v1": 0
         }
 
+    # ---------------------------------------------
 
     def read(self, reg):
 
         return self.regs.get(reg, 0)
 
+    # ---------------------------------------------
 
-    def write(self, reg, valor):
+    def write(self, reg, value):
 
-        # $zero nunca pode ser alterado
         if reg != "$zero":
+            self.regs[reg] = value
 
-            self.regs[reg] = valor
+    # ---------------------------------------------
+
+    def dump(self):
+
+        for reg, value in self.regs.items():
+
+            print(f"{reg}: {value}")

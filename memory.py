@@ -1,18 +1,23 @@
-# Memória de dados (LW) leitura na memória
-
 class Memory:
 
     def __init__(self):
 
         self.memory = {
 
-            0: 100,
-            4: 200,
-            8: 300,
-            12: 400
+            0: 10,
+            4: 20,
+            8: 30,
+            12: 40
         }
 
+    # ---------------------------------------------
 
-    def load(self, endereco):
+    def load(self, address):
 
-        return self.memory.get(endereco, 0)
+        return self.memory.get(address, 0)
+
+    # ---------------------------------------------
+
+    def store(self, address, value):
+
+        self.memory[address] = value

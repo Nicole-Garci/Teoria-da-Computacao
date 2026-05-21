@@ -1,58 +1,35 @@
-"""
-Arquivo principal do simulador.
-"""
-
 import sys
+from cpu import MIPS
 
-from mips import MIPS
-
-
-# =========================================================
-# FUNÇÃO PRINCIPAL
-# =========================================================
 
 def main():
 
-    # Verifica parâmetro da linha de comando
     if len(sys.argv) != 2:
 
         print("Uso:")
         print("python3 main.py NomeDoArquivo.txt")
-
         return
 
     arquivo = sys.argv[1]
 
-
     try:
 
         with open(arquivo, "r") as f:
+            instrucoes = [
+                linha.strip()
+                for linha in f.readlines()
+                if linha.strip()
+            ]
 
-            instrucoes = f.readlines()
+    except FileNotFoundError:
 
-    except:
-
-        print("Erro ao abrir arquivo.")
-
+        print("Arquivo não encontrado.")
         return
 
+    cpu = MIPS(instrucoes)
 
-    cpu = MIPS()
-
-    numero = 1 # n número da instrução
-
-    for instrucao in instrucoes:
-
-        instrucao = instrucao.strip()
-
-        if instrucao != "":
-
-            cpu.execute(instrucao, numero)
-
-            numero += 1
+    cpu.run()
 
 
-# -----------------------------------------------------
 if __name__ == "__main__":
-
     main()
